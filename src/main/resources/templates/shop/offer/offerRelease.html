@@ -1,0 +1,67 @@
+<div class="card">
+
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+
+                <div id="data-table_filter" class="dataTables_filter">
+                    <form class="offerRelease-table-form">
+                        <h5>优惠发布：</h5>
+                        <hr>
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="offer1" type="radio" checked value="2" name="type">
+                                <span class="input-group-addon">
+					               	折扣券：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="sale" class="form-control">
+                                    </div>
+                                <span class="input-group-addon">
+                                    折优惠
+					            </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="offer2" type="radio" value="1" name="type">
+                                    <span class="input-group-addon">
+                                        满减券：
+                                    </span>
+                                    <span class="input-group-addon">
+                                        满
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="man" class="form-control">
+                                    </div>
+                                    <span class="input-group-addon">
+                                        减
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="jian" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+                            <button type="button" class="btn btn-secondary btn-save" onclick="offerRelease()">优惠发布</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-th-src="@{js/app/shop/offer/offerRelease.js}"></script>

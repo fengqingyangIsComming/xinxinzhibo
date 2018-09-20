@@ -1,0 +1,96 @@
+<div class="modal fade" id="merchant-review" data-keyboard="false" data-backdrop="static" tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form id="merchant-review-form">
+                    <h5>财务详情：</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 时间：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="created" class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺名称：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店主：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系方式：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="phone" class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 销售总额(MYR)：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="shopPrice" class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 销售总量：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="totalNum" class="form-control">
+                                    <input type="hidden" name="shopUserId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close" id="merchant-review-close" onclick="reviewClose()">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script data-th-src="@{js/app/merchant/chart/chartInfo.js}"></script>

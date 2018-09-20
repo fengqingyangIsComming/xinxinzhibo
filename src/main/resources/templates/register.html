@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="edge" />
+    <title>宝兆优惠购物后台管理系统</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{css/register.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/iCheck/minimal/green.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/app.css}" type="text/css">
+    <!-- animate -->
+    <link rel="stylesheet" th:href="@{css/animate/animate.min.css}" type="text/css">
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/iCheck/icheck.js}"></script>
+    <script th:src="@{js/bootstrap-notify/bootstrap-notify.min.js}"></script>
+    <script th:src="@{js/common.js}"></script>
+</head>
+<style>
+
+</style>
+<body>
+    <!-- Form-->
+    <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>账号注册：</h1>
+            </div>
+            <hr />
+            <form id="register-form">
+                <div class="form-header">
+                    <h2>基本信息：</h2>
+                </div>
+                <hr />
+                <div class="form-content">
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <td ><lable class="lable-red">*</lable>门店名称：</td>
+                                <td><input type="text" id="name" name="name" /></td>
+                                <td>（仅可修改一次，请谨慎选择）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>用户ID：</td>
+                                <td><input type="text" id="useridx" name="useridx" maxlength="8"/></td>
+                                <td>（登陆宝兆平台的ID）</td>
+                            </tr>
+
+                            <tr>
+                                <td><lable class="lable-red">*</lable>店长姓名：</td>
+                                <td><input type="text" id="username" name="username" /></td>
+                                <td>（3-5个字符，不对外展示）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>经营品类：</td>
+                                <td>
+                                    <select name="typeId" id="category">
+                                    </select>
+                                </td>
+                                <td>（选择经营的品类，如：美食，衣服等）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>国家：</td>
+                                <td>
+                                    <select name="country" id="country" onchange="setCountry()">
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>门店地址：</td>
+                                <td colspan="2">
+                                    <select id="province" name="pCDistrict" onchange="setProvince()" >
+                                    </select>
+                                    <select id="city" name="pCDistrict" onchange="setCity()" >
+                                    </select>
+                                    <select id="regin" name="pCDistrict" >
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>详细地址：</td>
+                                <td><input type="text" name="address" id="address" /></td>
+                                <td>（只需填写区以下的地址即可）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>手机号码：</td>
+                                <td><input type="text" name="phone" id="phone" /></td>
+                                <td>（如果手机号更换，请及时更改，方便平台联系）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>在线客服：</td>
+                                <td><input type="text" name="telephone" id="telephone" /></td>
+                                <td>（门店电话，方便顾客咨询）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>邮箱：</td>
+                                <td><input type="text" name="email" id="email"/></td>
+                                <td>（填写方便联系您的邮箱号码）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>邀请码：</td>
+                                <td><input type="text" name="invitedCode" id="invitedCode" /></td>
+                                <td>（别人提供给你的邀请码）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>店铺环境：</td>
+                                <td><input type="file" class="form-control" id="carouselUp1"></td>
+                                <td>（至少上传一张照片}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div id="carouselAddDiv1"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="sc-photo" type="button" onclick="uploadCarousel1()" value="上传">
+                                        <input class="sc-photo" type="button" onclick="cleanCarousel1()" value="清空">
+                                        <input type="hidden" name="storeImage" id="imgUrlC1">
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>商品图片：</td>
+                                <td><input type="file" class="form-control" id="carouselUp2"></td>
+                                <td>（至少上传一张照片}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div id="carouselAddDiv2"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="sc-photo" type="button" onclick="uploadCarousel2()" value="上传">
+                                        <input class="sc-photo" type="button" onclick="cleanCarousel2()" value="清空">
+                                        <input type="hidden" name="images" id="imgUrlC2">
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-header">
+                    <h2>证照信息：</h2>
+                </div>
+                <hr />
+                <div class="form-content">
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <td><b><lable class="lable-red">*</lable>营业证明：</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>注册编号：</td>
+                                <td><input type="text" name="registrationNumber" id="registrationNumber" /></td>
+                                <td></td>
+                            </tr>
+                            <tr><td></td><td><input type="file" class="form-contro3" id="carouselUp3"></td><td></td></tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <div class="input-group">
+                                        <div id="carouselAddDiv3"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="sc-photo" type="button" onclick="uploadCarousel3()" value="上传">
+                                        <input class="sc-photo" type="button" onclick="cleanCarousel3()" value="清空">
+                                        <input type="hidden" name="businessProof" id="imgUrlC3">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-header">
+                    <h2>其他信息：</h2>
+                </div>
+                <hr />
+                <div class="form-content">
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <td>门店收款方式：</td>
+                                <td><input type="text" name="paymentType" /></td>
+                                <td>（填写扫码付款或者别的方式）</td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>营业时间：</td>
+                                <td><input type="text" name="businessTime" id="businessTime" /></td>
+                                <td>（填写营业时间）</td>
+                            </tr>
+                            <tr>
+                                <td>人均消费：</td>
+                                <td><input type="text" name="avgPrice" /></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>推荐商品：</td>
+                                <td><input type="text" name="product" /></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><lable class="lable-red">*</lable>餐厅印象：</td>
+                                <td colspan="2">
+                                    <input type="text" class="ctyx" id="impressions1"/>
+                                    <input type="text" class="ctyx" id="impressions2"/>
+                                    <input type="text" class="ctyx" id="impressions3"/>
+                                    <input type="text" class="ctyx" id="impressions4"/>
+                                    <input type="text" class="ctyx" id="impressions5"/>
+                                    <input type="text" class="ctyx" id="impressions6"/>
+                                    <input type="hidden" name="impressions" id="impressions">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>附加信息：</td>
+                                <td colspan="2"><textarea name="attach" class="form-control" rows="4" style="border: solid;color: rgba(0,0,0,.5);"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-header">
+                    <h2>账号信息：</h2>
+                </div>
+                <hr />
+                <div class="form-content">
+                <div class="form-group">
+                    <p class="p-red">注：密码格式为数字+字母（8-16位字符），不允许出现特殊字符标识</p>
+                    <table>
+                        <tr>
+                            <td><lable class="lable-red">*</lable>设置密码：</td>
+                            <td><input type="password" name="pass" id="password1" maxlength="16"/></td>
+                        </tr>
+                        <tr>
+                            <td><lable class="lable-red">*</lable>确认密码：</td>
+                            <td><input type="password" id="password2" maxlength="16"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </form>
+            <div class="form-group">
+                <div style="display:block;margin: 0 auto;">
+                    <button type="button" onclick="register()" id="registerButton">注册</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div data-th-include="common/footer"></div>
+</body>
+<script th:inline="javascript">
+	var ctx = [[@{/}]];
+</script>
+<script data-th-src="@{js/app/register.js}"></script>
+</html>

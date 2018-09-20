@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.RoomOnLineUserMapper">
+    <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.RoomOnLineUser">
+        <id column="useridx" jdbcType="BIGINT" property="userIdx" />
+        <result column="useridx" jdbcType="INTEGER" property="userIdx" />
+        <result column="roomid" jdbcType="INTEGER" property="roomId" />
+        <result column="stardate" jdbcType="TIMESTAMP" property="stardate" />
+        <result column="publicmic" jdbcType="INTEGER" property="publicmic" />
+        <result column="postion" jdbcType="VARCHAR" property="postion" />
+        <result column="ttsinfo" jdbcType="VARCHAR" property="ttsinfo" />
+        <result column="flv" jdbcType="VARCHAR" property="flv" />
+        <result column="m3u8" jdbcType="VARCHAR" property="m3u8" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="photo" jdbcType="VARCHAR" property="photo" />
+        <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+        <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+    </resultMap>
+
+    <select id="findAllIds" resultType="map" parameterType="cc.mrbird.merchant.domain.RoomOnLineUser">
+        SELECT useridx FROM RoomOnLineUser
+    </select>
+
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.shop.dao.DpShopReviewMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.shop.domain.DpShopReview">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="PCDistrict" jdbcType="VARCHAR" property="pcdistrict" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="registrationNumber" jdbcType="VARCHAR" property="registrationNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="reviewTime" jdbcType="TIMESTAMP" property="reviewTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="business_proof" jdbcType="LONGVARCHAR" property="businessProof" />
+    <result column="store_image" jdbcType="LONGVARCHAR" property="storeImage" />
+    <result column="images" jdbcType="LONGVARCHAR" property="images" />
+	<result column="invitedCode" jdbcType="VARCHAR" property="invitedCode" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, shop_id, name, username, type_id, phone, telephone, email, country, PCDistrict, 
+    address, registrationNumber, status, created, reviewTime, operator
+  </sql>
+  <sql id="Blob_Column_List">
+    business_proof, store_image, images
+  </sql>
+  <insert id="insert" parameterType="cc.mrbird.shop.domain.DpShopReview">
+    insert into dp_shop_review (id, shop_id, name,
+      username, type_id, phone,
+      telephone, email, country,
+      PCDistrict, address, registrationNumber,
+      status, created, reviewTime,
+      operator, business_proof, store_image,
+      images,invitedCode)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
+      #{pCDistrict,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{registrationNumber,jdbcType=VARCHAR},
+      #{status,jdbcType=BIGINT}, #{created,jdbcType=TIMESTAMP}, #{reviewTime,jdbcType=TIMESTAMP},
+      #{operator,jdbcType=VARCHAR}, #{businessProof,jdbcType=LONGVARCHAR}, #{storeImage,jdbcType=LONGVARCHAR},
+      #{images,jdbcType=LONGVARCHAR},#{invitedCode,jdbcType=VARCHAR})
+  </insert>
+
+
+  <select id="findByDpShopReview" parameterType="cc.mrbird.shop.domain.DpShopReview" resultType="Map">
+    select id , shop_id as shopId, name,
+      username, (SELECT type_name from dp_shop_type where id = type_id) as typeName, phone,
+      telephone, email, country,
+      PCDistrict as pCDistrict, address, registrationNumber,
+      status, created, reviewTime,
+      operator, business_proof as businessProof, store_image as storeImage,
+      images
+    from dp_shop_review
+    where 1=1
+    <if test="name != null and name != ''">
+      AND name = #{name}
+    </if>
+    <if test="status != null and status != ''">
+      AND status = #{status}
+    </if>
+  </select>
+
+
+  <select id="findById" resultType="Map" parameterType="cc.mrbird.shop.domain.DpShopReview">
+    select id, shop_id as shopId, name,(SELECT useridx from dp_shop_user where pid = shop_id)as useridx,
+      username, (SELECT type_name from dp_shop_type where id = type_id)as typeName,type_id as typeId,
+      phone,telephone, email, country,
+      PCDistrict as pCDistrict, address, registrationNumber,
+      status, created, reviewTime,
+      operator,  business_proof as businessProof, store_image as storeImage,
+      images,invitedCode from dp_shop_review
+      where id = #{id}
+  </select>
+
+  <update id="updateStatus" parameterType="cc.mrbird.shop.domain.DpShopReview">
+    update dp_shop_review set status=#{status}, operator=#{operator}, reviewTime=#{reviewTime} where id=#{id}
+  </update>
+
+  <select id="findByShopId" resultType="Map" parameterType="cc.mrbird.shop.domain.DpShopReview">
+    select id, shop_id, name,
+      username, (SELECT type_name from dp_shop_type where id = type_id)as typeName, phone,
+      telephone, email, country,
+      PCDistrict as pCDistrict, address, registrationNumber,
+      status, created, reviewTime,
+      operator,  business_proof as businessProof, store_image as storeImage,
+      images from dp_shop_review
+      where shop_id = #{shopId} and status = 1
+  </select>
+
+  <select id="findByTypeName" resultType="Integer">
+    select id from dp_shop_type where type_name = #{typeName}
+  </select>
+
+  <select id="findShopInfoByUseridx" resultType="Map" parameterType="String">
+        select
+        ds.id shopId
+        ,ds.name name
+        ,dsr.name  rname
+        ,dsu.username username
+        ,dsr.username rusername
+        ,ds.type_id type_id
+        ,dsr.type_id rtype_id
+        ,dsu.phone phone
+        ,dsr.phone rphone
+        ,dsu.telephone telephone
+        ,dsr.telephone rtelephone
+        ,dsu.telephone telephone
+        ,dsr.email remail
+        ,dsu.country country
+        ,dsr.country rcountry
+        ,dsu.PCDistrict PCDistrict
+        ,dsr.PCDistrict rPCDistrict
+        ,ds.address address
+        ,dsr.address raddress
+        ,dsu.registrationNumber registrationNumber
+        ,dsr.registrationNumber rregistrationNumber
+        ,dsu.business_proof business_proof
+        ,dsr.business_proof rbusiness_proof
+        ,dsu.store_image store_image
+        ,dsr.store_image rstore_image
+        ,ds.images images
+        ,dsr.images rimages
+        ,dsr.status rstatus
+        ,CASE when dsu.invitedCode is null then dsr.invitedCode else dsu.invitedCode end invitedCode
+        from dp_shop ds
+        left join dp_shop_user dsu on ds.id=dsu.pid
+        left join dp_shop_review dsr on dsr.shop_id=ds.id
+        where dsu.useridx=#{useridx}
+        order by dsr.id desc LIMIT 1
+  </select>
+</mapper>

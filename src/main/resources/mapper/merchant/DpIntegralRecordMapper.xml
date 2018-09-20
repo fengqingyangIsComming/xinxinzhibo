@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.DpIntegralRecordMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.DpIntegralRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+  </resultMap>
+
+  <insert id="insert" parameterType="cc.mrbird.merchant.domain.DpIntegralRecord">
+    insert into dp_integral_record (id, pid, status, createTime, manager)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER},#{status,jdbcType=INTEGER},
+    #{createtime,jdbcType=TIMESTAMP},#{manager,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="findByIntegralRecord" parameterType="Map" resultType="Map">
+    select dr.id,du.useridx,du.invitedCode,(select created from dp_shop where id = du.pid) as created,dr.status
+    from dp_integral_record dr
+    left join dp_shop_user du
+    on (dr.pid = du.id)
+    where 1=1
+    <if test="invitedCode != null and invitedCode != ''">
+      AND du.invitedCode = #{invitedCode}
+    </if>
+    <if test="manager != null and manager != ''">
+      AND dr.manager = #{manager}
+    </if>
+
+  </select>
+
+
+    <select id="findByIntegralList"  resultType="Map">
+        select id,inviter ,invitee,creatTime from
+        dp_invitr_record
+        where Date(creatTime) <![CDATA[ >= ]]>  #{param1} and Date(creatTime) <![CDATA[ <= ]]>  #{param2}
+    </select>
+
+</mapper>

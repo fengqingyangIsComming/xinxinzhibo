@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.LiveUserInfoMapper">
+    <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.LiveUserInfo">
+        <id column="useridx" jdbcType="BIGINT" property="userIdx" />
+        <result column="userid" jdbcType="VARCHAR" property="userId" />
+        <result column="gender" jdbcType="INTEGER" property="gender" />
+        <result column="myname" jdbcType="VARCHAR" property="myname" />
+        <result column="signatures" jdbcType="VARCHAR" property="signatures" />
+        <result column="smallpic" jdbcType="VARCHAR" property="smallpic" />
+        <result column="bigpic" jdbcType="VARCHAR" property="bigpic" />
+        <result column="starnotify" jdbcType="INTEGER" property="starnotify" />
+        <result column="addTime" jdbcType="TIMESTAMP" property="addTime" />
+        <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastLoginTime" />
+        <result column="rtmpid" jdbcType="INTEGER" property="rtmpId" />
+        <result column="level" jdbcType="INTEGER" property="level" />
+        <result column="devType" jdbcType="VARCHAR" property="devType" />
+        <result column="grade" jdbcType="INTEGER" property="grade" />
+        <result column="curexp" jdbcType="BIGINT" property="curexp" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="pass" jdbcType="VARCHAR" property="pass" />
+        <result column="ThirdID" jdbcType="VARCHAR" property="thirdId" />
+        <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+        <result column="registerIP" jdbcType="VARCHAR" property="registerIp" />
+        <result column="thirdType" jdbcType="VARCHAR" property="thirdType" />
+        <result column="inviteCode" jdbcType="VARCHAR" property="inviteCode" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+    </resultMap>
+
+    <update id="update" parameterType="cc.mrbird.merchant.domain.LiveUserInfo">
+        update Live_UserInfo
+        <set>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where id=#{userId}
+    </update>
+
+
+    <select id="findByUserIdx" resultType="cc.mrbird.merchant.domain.LiveUserInfo" parameterType="cc.mrbird.merchant.domain.LiveUserInfo">
+      select  * from Live_UserInfo where useridx = #{userIdx}
+    </select>
+
+    <select id="findByInviteCode" resultType="cc.mrbird.merchant.domain.LiveUserInfo" parameterType="cc.mrbird.merchant.domain.LiveUserInfo">
+      select  * from Live_UserInfo where inviteCode = #{inviteCode}
+    </select>
+
+
+    <select id="findByUserIdAndPass" resultType="cc.mrbird.merchant.domain.LiveUserInfo" parameterType="cc.mrbird.merchant.domain.LiveUserInfo">
+        select * from Live_UserInfo where useridx = #{userIdx}
+    </select>
+
+   <!-- <select id="findAllIds" resultType="map" parameterType="cc.mrbird.merchant.domain.LiveUserInfo">
+        SELECT useridx FROM Live_UserInfo
+    </select>-->
+
+</mapper>

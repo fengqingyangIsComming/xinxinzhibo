@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" data-th-href="@{css/zhibo/video-js.css}">
+	<script data-th-src="@{js/zhibo/video.js}"></script>
+	<style>
+		.user-name {
+			display: none;
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			z-index: 10;
+			min-width: 150px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: red;
+			border: 1px solid red;
+		}
+		.videocss {
+			width: 200px;
+			height: 300px;
+		}
+		.videodiv {
+			width: 200px;
+			margin: 10px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	
+	
+	<div class="videodiv">
+		<video id="example_video_1" class="video-js vjs-default-skin videocss" controls="controls" preload="auto" data-setup="{}" autoplay="autoplay">
+			<source src="rtmp://livewspull.51xuehao.com/live/20001053" type="rtmp/flv">
+		</video>
+		<div>
+			<a href="">审核通过</a>
+			<a href="">下线</a>
+			<a href="">封号</a>
+		</div>
+	</div>
+
+	
+	<div class="videodiv">
+		<video id="example_video_2" class="video-js vjs-default-skin videocss" controls="controls" preload="auto" data-setup="{}" autoplay="autoplay">
+			<source src="rtmp://livewspull.51xuehao.com/live/20008427" type="rtmp/flv">
+		</video>
+		<div>
+			<a href="">审核通过</a>
+			<a href="">下线</a>
+			<a href="">封号</a>
+		</div>
+	</div>
+	
+	<div class="videodiv">
+		<video id="example_video_3" class="video-js vjs-default-skin videocss" controls="controls" preload="auto" data-setup="{}" autoplay="autoplay">
+			<source src="rtmp://livewspull.51xuehao.com/live/20008585" type="rtmp/flv">
+		</video>
+		<div>
+			<a href="">审核通过</a>
+			<a href="">下线</a>
+			<a href="">封号</a>
+		</div>
+	</div>
+
+	<div class="videodiv">
+		<video id="example_video_4" class="video-js vjs-default-skin videocss" controls="controls" preload="auto" data-setup="{}" autoplay="autoplay">
+			<source src="rtmp://livewspull.51xuehao.com/live/20008643" type="rtmp/flv">
+		</video>
+		<div>
+			<a href="">审核通过</a>
+			<a href="">下线</a>
+			<a href="">封号</a>
+		</div>
+	</div>
+
+</body>
+</html>

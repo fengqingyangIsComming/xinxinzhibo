@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.shop.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.shop.domain.DpComment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="level" jdbcType="DOUBLE" property="level" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="is_image" jdbcType="INTEGER" property="isImage" />
+    <result column="levelcontent" jdbcType="VARCHAR" property="levelcontent" />
+    <result column="impressions" jdbcType="VARCHAR" property="impressions" />
+    <result column="percapita" jdbcType="DOUBLE" property="percapita" />
+    <result column="mlevel" jdbcType="DOUBLE" property="mlevel" />
+    <result column="slevel" jdbcType="DOUBLE" property="slevel" />
+    <result column="rlevel" jdbcType="DOUBLE" property="rlevel" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <!--<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cc.mrbird.shop.domain.DpComment">
+
+  </resultMap>-->
+
+
+  <select id="findById" resultType="cc.mrbird.shop.domain.DpComment" parameterType="cc.mrbird.shop.domain.DpComment">
+    select id, shop_id, user_id, level, created, updated, image, is_image, levelcontent, impressions,
+    percapita, mlevel, slevel, rlevel from dp_comment where id = #{id}
+  </select>
+
+
+  <select id="findByComment" resultType="Map" parameterType="cc.mrbird.shop.domain.DpComment">
+    select id, shop_id as shopId, user_id as userId, level, created, updated, image, is_image as isImage, levelcontent, impressions,
+    percapita, mlevel, slevel, rlevel,content from dp_comment where shop_id=#{shopId}
+    <if test="userId != null and userId != ''">
+      AND user_id = #{userId}
+    </if>
+    <if test="levelcontent != null and levelcontent != ''">
+      AND levelcontent = #{levelcontent}
+    </if>
+
+  </select>
+</mapper>

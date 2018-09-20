@@ -1,0 +1,305 @@
+<!--
+<div class="modal fade" id="user-regist" data-keyboard="false" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title pull-left" id="user-add-modal-title">商家注册</h3>
+            </div>
+            <div class="modal-body">
+                <form id="user-add-form">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save" id="user-add-button" name="save">保存</button>
+                <button type="button" class="btn btn-secondary btn-close">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+<!--<div class="card">
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_buttons hidden-sm-down actions">
+                    <span class="actions__item zmdi zmdi-search" onclick="search()" title="搜索" /> <span class="actions__item zmdi zmdi-refresh-alt" onclick="refresh()" title="刷新" />
+                    <div class="dropdown actions__item">
+                        <i data-toggle="dropdown" class="zmdi zmdi-download"> </i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="excel" onclick="exportUserExcel()">
+                                Excel (.xlsx) </a>
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="csv" onclick="exportUserCsv()"> CSV
+                                (.csv) </a>
+                        </ul>
+                    </div>
+                    <div class="dropdown actions__item" shiro:hasAnyPermissions="user:add,user:delete,user:update">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#user-add" shiro:hasPermission="user:add">新增用户</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="updateUser()" shiro:hasPermission="user:update">修改用户</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="deleteUsers()" shiro:hasPermission="user:delete">删除用户</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="data-table_filter" class="dataTables_filter">
+                    <form class="user-table-form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 用户名： </span>
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control"> <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 性别： </span>
+                                    <div class="form-group">
+                                        <select class="form-control" name="ssex">
+                                            <option value="" selected>所有</option>
+                                            <option value="0">男</option>
+                                            <option value="1">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 状态： </span>
+                                    <div class="form-group">
+                                        <select class="form-control" name="status">
+                                            <option value="" selected>所有</option>
+                                            <option value="0">锁定</option>
+                                            <option value="1">有效</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <table id="userTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+    <!--<div class="form-group">
+        <label>门店名称</label>
+        <input type="text" name="name" />
+    </div>
+    <div class="form-group">
+        <label>店长姓名</label>
+        <input type="text" name="username" />
+    </div>
+    <div class="form-group">
+        <label>用户ID</label>
+        <input type="text" name="useridx" />
+    </div>
+    <div class="form-group">
+        <label>密码</label>
+        <input type="password" name="password" />
+    </div>
+    <div class="form-group">
+        <label>确认密码</label>
+        <input type="password" name="cpassword" />
+    </div>
+    <div class="form-group">
+        <label>邀请码</label>
+        <input type="text" name="inviteCode" />
+    </div>
+    <div class="form-group">
+        <label>经营品类</label>
+        <select name="typeId">
+            <option>美食</option>
+            <option>娱乐</option>
+            <option>酒店</option>
+            <option>电影</option>
+            <option>KTV</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>门店地址</label>
+        <input name="address">
+    </div>
+    <div class="form-group">
+        <label>详细地址</label>
+        <input name="address">
+    </div>
+    <div class="form-group">
+        <label>手机号码</label>
+        <input name="phone">
+    </div>
+    <div class="form-group">
+        <label>在线客服</label>
+        <input name="telephone">
+    </div>
+    <div class="form-group">
+        <label>门店收款方式</label>
+        <input name="paymentType">
+    </div>
+    <div class="form-group">
+        <label>营业时间</label>
+        <input name="time" type="time">
+    </div>
+    <div class="form-group">
+        <label>人均价格</label>
+        <input name="avgprice">
+    </div>
+    <div class="form-group">
+        <label>推荐商品</label>
+        <input name="product">
+    </div>
+    <div class="form-group">
+        <label>附加信息</label>
+        <input name="attach">
+    </div>
+    <div class="form-group">
+        <label>店铺信息</label>
+        <input name="attach" type="file">
+        <input type="button" value="上传">
+    </div>
+    <div class="form-group">
+        <button onclick="regist()">注册</button>
+    </div>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="edge" />
+    <title>辛鑫电商管理系统-注册</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/iCheck/minimal/green.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/app.css}" type="text/css">
+    <!-- animate -->
+    <link rel="stylesheet" th:href="@{css/animate/animate.min.css}" type="text/css">
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/iCheck/icheck.js}"></script>
+    <script th:src="@{js/bootstrap-notify/bootstrap-notify.min.js}"></script>
+    <script th:src="@{js/common.js}"></script>
+</head>
+<style>
+
+</style>
+<body>
+<!-- Form-->
+<div class="form">
+    <div class="form-toggle"></div>
+    <div class="form-panel one">
+        <div class="form-header">
+            <h1>商家注册</h1>
+        </div>
+        <div class="form-content">
+            <form id="user-add-form">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	 用户名：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control">
+                                <input type="text" hidden name="oldusername" class="form-control">
+                                <input type="text" hidden name="userId" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row user_password">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	 密码：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="password" value="123456" readonly class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	 邮箱：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	 手机：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="mobile" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group" style="margin-top:10px;">
+                                <span class="input-group-addon">
+					               	状态：
+					             </span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" name="status" checked class="toggle-switch__checkbox">
+                                <i class="toggle-switch__helper"></i>
+                            </div>
+                            <span class="input-group-addon" id="status" style="margin-left: 10px;">
+	                                 	可用
+						             </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group" style="margin-top:10px;">
+                                <span class="input-group-addon">
+					               	性别：
+					             </span>
+                            <div class="form-group">
+                                <label class="custom-control custom-radio">
+                                    <input name="ssex" type="radio" value="0" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">男</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="ssex" type="radio" value="1" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">女</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="ssex" type="radio" value="2" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">保密</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+<div data-th-include="common/footer"></div>
+</body>
+<script th:inline="javascript">
+    var ctx = [[@{/}]];
+</script>
+<script data-th-src="@{js/app/login.js}"></script>
+</html>

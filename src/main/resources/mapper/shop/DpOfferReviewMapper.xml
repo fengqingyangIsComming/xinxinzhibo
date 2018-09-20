@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.shop.dao.DpOfferReviewMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.shop.domain.DpOfferReview">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="man" jdbcType="INTEGER" property="man" />
+    <result column="jian" jdbcType="INTEGER" property="jian" />
+    <result column="sale" jdbcType="DECIMAL" property="sale" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="reviewTime" jdbcType="TIMESTAMP" property="reviewTime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+  </resultMap>
+
+ <!-- <sql id="Base_Column_List">
+    id, shop_id, man, jian, sale, status, created, reviewTime, operator
+  </sql>-->
+
+  <insert id="insert" parameterType="cc.mrbird.shop.domain.DpOfferReview">
+    insert into dp_offer_review (id, shop_id, man,
+      jian, sale, status,
+      created, reviewTime, operator,type
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{man,jdbcType=INTEGER},
+      #{jian,jdbcType=INTEGER}, #{sale,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER},
+      #{created,jdbcType=TIMESTAMP}, #{reviewTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <select id="findByDpOfferReview" resultType="Map" parameterType="cc.mrbird.shop.domain.DpOfferReview">
+    select dr.id, dr.shop_id as shopId, dr.man, dr.jian, dr.sale, dr.status, dr.created, dr.reviewTime, dr.operator,
+    ds.name,(select type_name from dp_shop_type where id=ds.type_id) as typeName
+    from dp_offer_review dr
+    left join dp_shop ds on(dr.shop_id=ds.id)
+    where 1=1
+    <if test="status != null and status != ''">
+      AND dr.status = #{status}
+    </if>
+  </select>
+
+  <select id="findById" parameterType="Integer" resultType="cc.mrbird.shop.domain.DpOfferReview">
+    select id, shop_id as shopId, man,
+      jian, sale, status,
+      created, reviewTime, operator,type
+      from dp_offer_review where id = #{id}
+  </select>
+
+
+  <update id="updateStatus" parameterType="cc.mrbird.shop.domain.DpOfferReview">
+    update dp_offer_review set status=#{status},reviewTime=#{reviewTime},operator=#{operator} where id = #{id}
+  </update>
+</mapper>

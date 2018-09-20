@@ -1,0 +1,283 @@
+<div class="modal fade" id="merchant-review" data-keyboard="false" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title pull-left" id="merchant-review-modal-title">商家审核</h3>
+            </div>
+            <div class="modal-body">
+                <form id="merchant-review-form">
+                    <h5>商家基本信息：</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺名称：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="name"  class="form-control">
+                                    <input type="hidden" name="status">
+                                    <input type="hidden" name="operator">
+                                    <input type="hidden" name="id">
+                                    <input type="hidden" name="shopId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 经营品类：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="typeName"  class="form-control">
+                                    <input type="hidden" name="typeId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店长姓名：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="username"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 用户ID：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="useridx"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系方式：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="phone"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 邮箱：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="email"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 在线客服：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="telephone"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 邀请码：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="invitedCode"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 国家：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="country"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 门店地址：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="pCDistrict"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 详细地址：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="address"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5>商家其他信息：</h5>
+                    <hr>
+                    <!--<div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 门店收款方式：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="paymentType"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业时间：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="businessTime"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 推荐商品：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="product"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 人均消费：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="avgPrice"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺印象：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="impressions"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 附加信息：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="attach"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 注册编号：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="registrationNumber"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业证明：
+                                    <input type="hidden" name="businessProof">
+					            </span>
+                                <div class="form-group" id="businessProofDiv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺环境：
+                                    <input type="hidden" name="storeImage">
+					            </span>
+                                <div class="form-group" id="baseInfoStoreDiv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 商品图片：
+                                    <input type="hidden" name="images">
+					            </span>
+                                <div class="form-group" id="baseInfoProductDiv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6>如通过可不填写原因，如不通过请填写原因：</h6>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <input type="text" name="reason"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-save" id="merchant-review-passed" name="save" onclick="reviewPassed()">审核通过</button>
+                <button type="button" class="btn btn-save" id="merchant-review-failed" onclick="reviewFailed()">审核不通过</button>
+                <button type="button" class="btn btn-secondary btn-close" id="merchant-review-close" onclick="reviewClose()">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-th-src="@{js/app/merchant/merchant/merchantReview.js}"></script>

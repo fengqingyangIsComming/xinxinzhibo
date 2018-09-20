@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.system.dao.RegisterMapper">
+  <resultMap id="ShopTypeResultMap" type="cc.mrbird.system.domain.ShopType">
+    <id column="id" jdbcType="DECIMAL" property="userId" />
+    <result column="type_name" jdbcType="VARCHAR" property="username" />
+    <result column="image" jdbcType="VARCHAR" property="password" />
+    <result column="language" jdbcType="DECIMAL" property="language" />
+    <result column="parent_id" jdbcType="DECIMAL" property="parentId" />
+  </resultMap>
+  
+    
+  <!--<select id="getShopType" resultMap="ShopTypeResultMap">-->
+		<!--select id,type_name,image,`language` from dp_shop_type-->
+  <!--</select>-->
+  
+</mapper>

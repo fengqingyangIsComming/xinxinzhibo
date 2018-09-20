@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.DpInvitrRecordMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.DpInvitrRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="inviter" jdbcType="BIGINT" property="inviter" />
+    <result column="invitee" jdbcType="BIGINT" property="invitee" />
+    <result column="creatTime" jdbcType="TIMESTAMP" property="creatTime" />
+  </resultMap>
+
+  <insert id="insert" parameterType="cc.mrbird.merchant.domain.DpInvitrRecord">
+    insert into dp_invitr_record (id, inviter, invitee, 
+      creatTime)
+    values (#{id,jdbcType=BIGINT}, #{inviter,jdbcType=BIGINT}, #{invitee,jdbcType=BIGINT},
+      #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+
+
+  <select id="findByUserIdx" parameterType="cc.mrbird.merchant.domain.DpInvitrRecord" resultType="Map">
+    select (select name from dp_shop where id=du.pid)as name,dr.inviter ,dr.invitee,dr.creatTime,dr.id
+    from dp_invitr_record dr left join dp_shop_user du on (dr.invitee=du.useridx)
+    where inviter=#{inviter}
+    <if test="invitee != null and invitee != ''">
+      AND dr.invitee = #{invitee}
+    </if>
+  </select>
+
+
+  <select id="findByRecord" parameterType="cc.mrbird.merchant.domain.DpInvitrRecord" resultType="Map">
+    select (select name from dp_shop where id=du.pid)as name,dr.inviter ,dr.invitee,dr.creatTime,dr.id
+    from dp_invitr_record dr left join dp_shop_user du on (dr.invitee=du.useridx)
+    where inviter=#{inviter}
+    <if test="invitee != null and invitee != ''">
+      AND dr.invitee = #{invitee}
+    </if>
+  </select>
+
+
+
+  <select id="findInvitee" parameterType="cc.mrbird.merchant.domain.DpInvitrRecord" resultType="cc.mrbird.merchant.domain.DpInvitrRecord">
+    select * from dp_invitr_record where invitee = #{invitee}
+  </select>
+</mapper>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="edge" />
+    <title>宝兆优惠购物后台管理系统</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/iCheck/minimal/green.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{css/app.css}" type="text/css">
+    <!-- animate -->
+    <link rel="stylesheet" th:href="@{css/animate/animate.min.css}" type="text/css">
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/iCheck/icheck.js}"></script>
+    <script th:src="@{js/bootstrap-notify/bootstrap-notify.min.js}"></script>
+    <script th:src="@{js/common.js}"></script>
+</head>
+<style>
+
+</style>
+<body>
+    <!-- Form-->
+    <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>账户登录</h1>
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" name="username" />
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" name="password" />
+                </div>
+                <div class="form-group" style="display:inline-block">
+                    <label>验证码</label>
+                    <input type="text" name="code" style="width:50%; display:inline-block" />
+                    <img data-th-src="@{gifCode}" id="validateCodeImg" onclick="reloadCode()" style="display:inline-block" />
+                </div>
+                <div class="form-group" style="margin: 0px;">
+                    <p>
+                        <input type="checkbox" name="rememberme" />&nbsp;&nbsp;记住我</p>
+                    <!--<a href="./register" >注册</a>-->
+                </div>
+                <div class="form-group">
+                    <button onclick="login()" id="loginButton">登录</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-panel two">
+
+
+            <div class="form-header">
+                <h1>账户注册</h1>
+            </div>
+            <form id="shop-add-form">
+                <div class="form-group">
+                    <label>邮箱</label>
+                    <input type="text" name="email" />
+                    <button id="codeBut" onclick="sendCode()">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <label>验证码</label>
+                    <input type="text" name="code" />
+                    <input type="hidden" name="code2" />
+                    <input type="hidden" name="useridx">
+                </div>
+
+               <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" name="pass" />
+                </div>
+                <div class="form-group">
+                    <label>确认密码</label>
+                    <input type="password" name="cpass" />
+                </div>
+                <!--<div class="form-group">
+                   <label>邀请码</label>
+                   <input type="text" name="invitedCode" />
+               </div>
+               <div class="form-group">
+                    <label>用户ID</label>
+                    <input type="text" name="useridx" />
+                </div>
+               <div class="form-group">
+                   <label>经营品类</label>
+                   <select name="typeId">
+                       <option value="1">美食</option>
+                       <option value="2">娱乐</option>
+                       <option value="3">酒店</option>
+                       <option value="4">电影</option>
+                       <option value="5">KTV</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <label>门店地址</label>
+                   <input name="address">
+               </div>
+               <div class="form-group">
+                   <label>详细地址</label>
+                   <input name="address">
+               </div>
+               <div class="form-group">
+                   <label>手机号码</label>
+                   <input name="phone">
+               </div>
+               <div class="form-group">
+                   <label>在线客服</label>
+                   <input name="telephone">
+               </div>
+               <div class="form-group">
+                   <label>门店收款方式</label>
+                   <input name="paymentType">
+               </div>
+               <div class="form-group">
+                   <label>营业时间</label>
+                   <input name="time" type="time">
+               </div>
+               <div class="form-group">
+                   <label>人均价格</label>
+                   <input name="avgprice">
+               </div>
+               <div class="form-group">
+                   <label>推荐商品</label>
+                   <input name="product">
+               </div>
+               <div class="form-group">
+                   <label>附加信息</label>
+                   <input name="attach">
+               </div>
+               <div class="form-group">
+                   <label>店铺信息</label>
+                   <input name="attach" type="file">
+
+               </div>-->
+               <div class="form-group">
+                   <button onclick="registCannis()">注册</button>
+               </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div data-th-include="common/footer"></div>
+</body>
+<script th:inline="javascript">
+	var ctx = [[@{/}]];
+</script>
+<script data-th-src="@{js/app/login.js}"></script>
+</html>

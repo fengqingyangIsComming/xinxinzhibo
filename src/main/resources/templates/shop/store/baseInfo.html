@@ -1,0 +1,220 @@
+
+<div class="card">
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+
+                <div id="data-table_filter" class="dataTables_filter">
+                    <form class="baseInfo-table-form">
+                        <h5>商家基本信息：</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺名称：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control">
+                                        <input type="hidden" name="status">
+                                        <input type="hidden" name="shopId">
+                                        <input type="hidden" name="shopUserId">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 经营品类：
+					            </span>
+                                    <div class="form-group">
+                                        <!--<input type="text" name="typeName"  class="form-control">-->
+                                        <select name="typeId" style="width:100px;float:left;" class="form-control" id="category" >
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店长姓名：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="username"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 用户ID：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="useridx"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系方式：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="phone"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 邮箱：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="email"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 在线客服：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="telephone"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 邀请码：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="invitedCode"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 国家：
+					            </span>
+                                    <div class="form-group">
+                                        <!--<input type="text" name="country"  class="form-control">-->
+                                        <select id="country" name="country" onchange="setCountry()" style="width:100px;float:left;" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 门店地址：
+					            </span>
+                                    <div class="form-group">
+                                        <!--<input type="text" name="pCDistrict"  class="form-control">-->
+                                        <select id="province" name="pCDistrict" onchange="setProvince()" style="width:100px;float:left;" class="form-control">
+                                        </select>
+                                        <select id="city" name="pCDistrict" onchange="setCity()" style="width:100px;float:left;" class="form-control">
+                                        </select>
+                                        <select id="regin" name="pCDistrict"  style="width:100px;float:left;" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 详细地址：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="address"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 注册编号：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="registrationNumber"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业证明：
+					            </span>
+                                    <div class="form-group" id="baseInfoBusinessProofDiv">
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" style="width: 170px;" id="carouselUp1">
+                                        <input type="button" id="shangchuan1" class="btn btn-secondary-outline" onclick="uploadCarousel1()" value="上传" />
+                                        <input type="hidden" name="businessProof" id="imgUrlC1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 店铺环境：
+					            </span>
+                                    <div class="form-group" id="baseInfoStoreDiv">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" style="width: 170px;" id="carouselUp2">
+                                        <input type="button" id="shangchuan2" class="btn btn-secondary-outline" onclick="uploadCarousel2()" value="上传" />
+                                        <input type="hidden" name="storeImage" id="imgUrlC2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+					               	 商品图片：
+					            </span>
+                                    <div class="form-group" id="baseInfoProductDiv">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" style="width: 170px;" id="carouselUp3">
+                                        <input type="button" id="shangchuan3" class="btn btn-secondary-outline" onclick="uploadCarousel3()" value="上传" />
+                                        <input type="hidden" name="images" id="imgUrlC3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer" id="baseInfoSubDiv">
+                    <button type="button" class="btn btn-secondary btn-save" id="baseInfo-submit" onclick="baseInfoSubmit()">提交审核</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-th-src="@{js/app/shop/store/baseInfo.js}"></script>

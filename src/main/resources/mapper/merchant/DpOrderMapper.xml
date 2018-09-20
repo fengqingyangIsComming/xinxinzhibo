@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.DpShopMapper">
+    <resultMap id="BaseResultMap2" type="cc.mrbird.merchant.domain.DpOrder">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="shop_price" jdbcType="DECIMAL" property="shopPrice"/>
+        <result column="discount_price" jdbcType="DECIMAL" property="discountPrice"/>
+        <result column="user_price" jdbcType="DECIMAL" property="userPrice"/>
+        <result column="payment_type" jdbcType="INTEGER" property="paymentType"/>
+        <result column="bill_no" jdbcType="VARCHAR" property="billNo"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime"/>
+        <result column="refund_status" jdbcType="INTEGER" property="refundStatus"/>
+        <result column="shop_id" jdbcType="VARCHAR" property="shopId"/>
+        <result column="shop_name" jdbcType="VARCHAR" property="shopName"/>
+        <result column="shop_logo" jdbcType="VARCHAR" property="shopLogo"/>
+        <result column="shop_type" jdbcType="VARCHAR" property="shopType"/>
+    </resultMap>
+
+    <select id="findChartWithOrder" resultType="cc.mrbird.merchant.domain.DpShop" parameterType="cc.mrbird.merchant.domain.DpShop">
+        SELECT d.name,d.created,d.popularity,dp.shop_price as shopPrice  from dp_shop d
+        left join dp_order dp on (dp.shop_id=d.id)
+        where 1=1
+        <if test="name != null and name != ''">
+            AND ds.name = #{name}
+        </if>
+        order by d.id
+    </select>
+
+</mapper>

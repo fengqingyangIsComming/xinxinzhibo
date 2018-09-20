@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.DpShopUserMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.DpShopUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="useridx" jdbcType="BIGINT" property="useridx" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
+    <result column="impressions" jdbcType="VARCHAR" property="impressions" />
+    <result column="business_proof" jdbcType="VARCHAR" property="businessProof" />
+    <result column="other_proof" jdbcType="VARCHAR" property="otherProof" />
+    <result column="attach" jdbcType="VARCHAR" property="attach" />
+    <result column="pass" jdbcType="VARCHAR" property="pass" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="PCDistrict" jdbcType="VARCHAR" property="pCDistrict" />
+    <result column="registrationNumber" jdbcType="VARCHAR" property="registrationNumber" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="invitedCode" jdbcType="VARCHAR" property="invitedCode" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="store_image" jdbcType="LONGVARCHAR" property="storeImage" />
+  </resultMap>
+  <!--<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cc.mrbird.merchant.domain.DpShopUser">-->
+    <!--<result column="store_image" jdbcType="LONGVARCHAR" property="storeImage" />-->
+  <!--</resultMap>-->
+
+
+  <!--<sql id="Base_Column_List">-->
+    <!--id, pid, useridx, username, phone, telephone, payment_type, product, impressions, -->
+    <!--business_proof, other_proof, attach, pass, status-->
+  <!--</sql>-->
+  <!--<sql id="Blob_Column_List">-->
+    <!--store_image-->
+  <!--</sql>-->
+
+  <insert id="insert" parameterType="cc.mrbird.merchant.domain.DpShopUser">
+    insert into dp_shop_user (id, pid, useridx,
+      username, phone, telephone, email,
+      payment_type, product, impressions, 
+      business_proof, other_proof, attach, 
+      pass, status, store_image,
+      country,PCDistrict,registrationNumber,reason,invitedCode,operator)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{useridx,jdbcType=BIGINT}, 
+      #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{paymentType,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, #{impressions,jdbcType=VARCHAR}, 
+      #{businessProof,jdbcType=VARCHAR}, #{otherProof,jdbcType=VARCHAR}, #{attach,jdbcType=VARCHAR}, 
+      #{pass,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{storeImage,jdbcType=LONGVARCHAR},
+      #{country,jdbcType=VARCHAR}, #{pCDistrict,jdbcType=VARCHAR}, #{registrationNumber,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR},#{invitedCode,jdbcType=VARCHAR},#{operator,jdbcType=VARCHAR})
+  </insert>
+
+
+  <update id="updateStatusByUserIdx" parameterType="cc.mrbird.merchant.domain.DpShopUser">
+    update dp_shop_user set status = #{status},reason = #{reason},operator=#{operator} where id = #{id};
+  </update>
+
+  <select id="findByShopUserId" parameterType="cc.mrbird.merchant.domain.DpShopUser" resultType="cc.mrbird.merchant.domain.DpShopUser">
+    select * from dp_shop_user where id = #{id}
+  </select>
+
+  <select id="findByInvitedCode" parameterType="cc.mrbird.merchant.domain.DpShopUser" resultType="Map">
+    select  ds.id,ds.name,du.username,du.useridx,ds.created
+      from dp_shop_user du left join dp_shop ds on (du.pid = ds.id)
+      where invitedCode = #{invitedCode}
+    <if test="useridx != null and useridx != ''">
+      AND du.useridx = #{useridx}
+    </if>
+  </select>
+
+
+  <update id="updateByDpShopUser" parameterType="cc.mrbird.merchant.domain.DpShopUser">
+    update dp_shop_user set username=#{username},phone=#{phone},telephone = #{telephone},
+      email=#{email},product=#{product}, business_proof=#{businessProof}, store_image=#{storeImage},registrationNumber=#{registrationNumber} where pid = #{pid} and status=2
+  </update>
+
+  <update id="updateShopUserOtherInfo" parameterType="cc.mrbird.merchant.domain.DpShopUser">
+    update dp_shop_user set payment_type=#{paymentType},product=#{product},
+      impressions=#{impressions},attach=#{attach} where pid = #{pid}
+  </update>
+
+
+
+  <select id="findByUseridxs" parameterType="cc.mrbird.merchant.domain.DpShopUser" resultType="Map">
+    select  ds.name,du.username,du.useridx,ds.created,(SELECT type_name from dp_shop_type where id = ds.type_id)as typeName,
+    du.phone,du.telephone,du.email,du.status,du.id as shopUserId,ds.id as shopId,du.invitedCode as inviteCode,
+    du.country,du.PCDistrict as pCDistrict,du.registrationNumber,du.business_proof as businessProof,du.store_image as storeImage,ds.images,ds.address,
+    du.product,du.payment_type as paymentType,du.impressions,du.attach,ds.businesstime as businessTime,ds.avgprice as avgPrice
+    from dp_shop ds left join dp_shop_user du on (ds.id = du.pid)
+    where du.useridx = #{useridx}
+
+  </select>
+
+
+  <update id="updateReviewStatus" parameterType="Map">
+    update dp_shop_user set username=#{username},phone=#{phone},telephone = #{telephone},invitedCode=#{invitedCode},
+      email=#{email},business_proof=#{businessProof}, store_image=#{storeImage},
+      country=#{country},PCDistrict=#{pCDistrict},
+      registrationNumber=#{registrationNumber} where pid = #{shopId}
+  </update>
+</mapper>

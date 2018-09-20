@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.merchant.dao.DpShopMapper">
+  <resultMap id="BaseResultMap" type="cc.mrbird.merchant.domain.DpShop">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="avgprice" jdbcType="DECIMAL" property="avgPrice" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="level" jdbcType="DOUBLE" property="level" />
+    <result column="praise" jdbcType="INTEGER" property="praise" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="man" jdbcType="INTEGER" property="man" />
+    <result column="jian" jdbcType="INTEGER" property="jian" />
+    <result column="sale" jdbcType="DECIMAL" property="sale" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="jingdu" jdbcType="VARCHAR" property="jingdu" />
+    <result column="weidu" jdbcType="VARCHAR" property="weidu" />
+    <result column="juli" jdbcType="VARCHAR" property="juli" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="businesstime" jdbcType="VARCHAR" property="businessTime" />
+    <result column="images" jdbcType="LONGVARCHAR" property="images" />
+  </resultMap>
+  <!--<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cc.mrbird.merchant.domain.DpShop">-->
+    <!---->
+  <!--</resultMap>-->
+
+
+  <!--<sql id="Base_Column_List">-->
+    <!--id, name, logo, avgprice, type, des, level, praise, created, updated, man, jian, -->
+    <!--sale, address, type_id, jingdu, weidu, juli, popularity, businesstime-->
+  <!--</sql>-->
+  <!--<sql id="Blob_Column_List">-->
+    <!--images-->
+  <!--</sql>-->
+
+  <insert id="insert" parameterType="cc.mrbird.merchant.domain.DpShop">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dp_shop (id, name, logo, 
+      avgprice, type, des, 
+      level, praise, created, 
+      updated, man, jian, 
+      sale, address, type_id, 
+      jingdu, weidu, juli, 
+      popularity, businesstime, images
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{avgPrice,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR},
+      #{level,jdbcType=DOUBLE}, #{praise,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP}, #{man,jdbcType=INTEGER}, #{jian,jdbcType=INTEGER}, 
+      #{sale,jdbcType=DECIMAL}, #{address,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{jingdu,jdbcType=VARCHAR}, #{weidu,jdbcType=VARCHAR}, #{juli,jdbcType=VARCHAR}, 
+      #{popularity,jdbcType=INTEGER}, #{businessTime,jdbcType=VARCHAR}, #{images,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+
+  <select id="findByMerchant" parameterType="Map" resultType="Map">
+    select  ds.id,ds.name,du.username,du.useridx,ds.created,(SELECT type_name from dp_shop_type where id = ds.type_id)as typeName,
+    du.phone,du.telephone,du.email,du.status,du.id as shopUserId,ds.id as shopId,du.invitedCode as inviteCode,
+    du.country,du.PCDistrict as pCDistrict,du.registrationNumber,du.business_proof as businessProof,du.store_image as storeImage,ds.images,ds.address,
+    du.product,du.payment_type as paymentType,du.impressions,du.attach,ds.businesstime as businessTime,ds.avgprice as avgPrice
+    from dp_shop ds left join dp_shop_user du on (ds.id = du.pid)
+    where 1=1
+    <if test="useridx != null and useridx != ''">
+      AND du.useridx = #{useridx}
+    </if>
+    <if test="name != null and name != ''">
+      AND ds.name = #{name}
+    </if>
+    <if test="status != null and status != ''">
+      AND du.status = #{status}
+    </if>
+  </select>
+
+
+
+  <select id="findByMerchantID" parameterType="cc.mrbird.merchant.domain.DpShopUser" resultType="Map">
+    select  ds.name,du.username,du.useridx,ds.created,(SELECT type_name from dp_shop_type where id = ds.type_id)as typeName,
+    du.phone,du.telephone,du.email,du.status,ds.address,ds.images,ds.businesstime as businessTime,ds.avgprice as avgPrice,
+    du.country,du.PCDistrict as pCDistrict,du.registrationNumber,du.reason,du.attach,du.store_image as storeImage,
+    du.business_proof as businessProof,du.impressions,du.product,du.payment_type as paymentType,
+    du.invitedCode as inviteCode
+    from dp_shop ds left join dp_shop_user du on (ds.id = du.pid)
+    where du.id = #{id}
+  </select>
+
+  <select id="findByShopId" parameterType="cc.mrbird.merchant.domain.DpShop" resultType="Map">
+    select  ds.name,du.username,du.useridx,ds.created,(SELECT type_name from dp_shop_type where id = ds.type_id)as typeName,
+    du.phone,du.telephone,du.email,du.status,ds.address,ds.images,ds.businesstime as businessTime,ds.avgprice as avgPrice,
+    du.country,du.PCDistrict as pCDistrict,du.registrationNumber,du.reason,du.attach,du.store_image as storeImage,
+    du.business_proof as businessProof,du.impressions,du.product,du.payment_type as paymentType,
+    du.invitedCode as inviteCode
+    from dp_shop ds left join dp_shop_user du on (ds.id = du.pid)
+    where ds.id = #{id}
+  </select>
+
+  <update id="updateOfferInfo" parameterType="cc.mrbird.shop.domain.DpOfferReview">
+    update dp_shop set man=#{man},jian=#{jian},sale=#{sale},type=#{type} where id=#{shopId}
+  </update>
+
+    <select id="findByChart" parameterType="Map" resultType="Map">
+        SELECT d.id,d.name,dp.shop_price as shopPrice ,d.created,d.popularity from dp_shop d
+        left join dp_order dp on (dp.shop_id=d.id)
+        where 1=1
+        <if test="name != null and name != ''">
+            AND ds.name = #{name}
+        </if>
+    </select>
+
+    <select id="findByChartID" parameterType="cc.mrbird.merchant.domain.DpShopUser" resultType="Map">
+        SELECT ds.created,ds.name,du.username,du.phone,dso.shop_price as shopPrice,count(1) as totalNum
+        from dp_shop ds
+		LEFT JOIN dp_order dpo  on ds.id=dpo.shop_id
+        LEFT JOIN dp_shop_user du on(ds.id = du.pid)
+        LEFT JOIN dp_order dso on (dso.user_id=du.useridx)
+        where du.id = #{id}
+        group by ds.id
+    </select>
+
+  <update id="updateByDpShop" parameterType="cc.mrbird.merchant.domain.DpShop">
+    update dp_shop set name=#{name},type_id=#{typeId},
+      images=#{images},jingdu=#{jingdu}, weidu=#{weidu},address=#{address} where id = #{id}
+  </update>
+
+  <update id="updateOtherInfo" parameterType="cc.mrbird.merchant.domain.DpShop">
+    update dp_shop set avgprice=#{avgPrice},businesstime=#{businessTime} where id = #{id}
+  </update>
+
+
+
+  <update id="updateReviewStatus" parameterType="Map">
+     update dp_shop set name=#{name},type_id=#{typeId},jingdu=#{jingdu},weidu=#{weidu},
+      images=#{images},address=#{address},country=#{country} where id = #{shopId}
+  </update>
+</mapper>
